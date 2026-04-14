@@ -1,13 +1,24 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function BackToTop() {
-  const { scrollY } = useScroll();
-  
-  // Transform scroll position into opacity and pointer events
-  const opacity = useTransform(scrollY, [400, 500], [0, 1]);
-  const pointerEvents = useTransform(scrollY, [400, 500], ["none", "auto"]);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Ultra-reliable scroll listener
+    const toggleVisibility = () => {
+      // Use documentElement.scrollTop as a fallback for window.scrollY
+      const scrolled = window.scrollY || document.documentElement.scrollTop;
+      setIsVisible(scrolled > 300);
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    toggleVisibility(); // Check immediately on mount
+
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -17,15 +28,22 @@ export default function BackToTop() {
   };
 
   return (
-    <motion.button
-      style={{ opacity, pointerEvents }}
-      whileHover={{ scale: 1.1, filter: "brightness(1.2)" }}
-      whileTap={{ scale: 0.95 }}
-      onClick={scrollToTop}
-      className="fixed bottom-8 right-8 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/30 backdrop-blur-md transition-shadow hover:shadow-primary/50"
-      aria-label="Back to top"
-    >
-      <span className="material-symbols-outlined">arrow_upward</span>
-    </motion.button>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          key="back-to-top"
+          initial={{ opacity: 0, y: 50, scale: 0.5 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 50, scale: 0.5 }}
+          whileHover={{ scale: 1.15, filter: "brightness(1.2)" }}
+          whileTap={{ scale: 0.9 }}
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-2xl shadow-primary/50 transition-all hover:bg-primary/90"
+          aria-label="Back to top"
+        >
+          <span className="material-symbols-outlined text-3xl">arrow_upward</span>
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 }
