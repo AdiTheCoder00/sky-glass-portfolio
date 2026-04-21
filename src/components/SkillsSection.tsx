@@ -47,7 +47,7 @@ export default function SkillsSection() {
         <motion.div
           variants={fadeInUp}
           whileHover={{ y: -4, transition: { duration: 0.3, ease: skyEasing } }}
-          className="sm:col-span-2 lg:col-span-2 glass-card p-6 md:p-8 rounded-xl border border-outline-variant/15 flex flex-col justify-between aspect-auto sm:aspect-square group hover:bg-surface-container-lowest transition-all duration-500"
+          className="sm:col-span-2 lg:col-span-2 glass-card p-6 md:p-8 rounded-xl border border-outline-variant/15 flex flex-col justify-between aspect-auto sm:aspect-square group hover:bg-surface-container-lowest transition-colors duration-500 transform-gpu"
         >
           <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
             <span className="material-symbols-outlined text-3xl">deployed_code</span>
@@ -65,7 +65,7 @@ export default function SkillsSection() {
         <motion.div
           variants={fadeInUp}
           whileHover={{ y: -4, transition: { duration: 0.3, ease: skyEasing } }}
-          className="sm:col-span-1 lg:col-span-1 glass-card p-6 md:p-8 rounded-xl border border-outline-variant/15 flex flex-col items-center justify-center text-center group hover:bg-surface-container-lowest transition-all duration-500"
+          className="sm:col-span-1 lg:col-span-1 glass-card p-6 md:p-8 rounded-xl border border-outline-variant/15 flex flex-col items-center justify-center text-center group hover:bg-surface-container-lowest transition-colors duration-500 transform-gpu"
         >
           <div className="mb-4 text-primary">
             <span className="material-symbols-outlined text-4xl">data_object</span>
@@ -115,7 +115,7 @@ export default function SkillsSection() {
         <motion.div
           variants={fadeInUp}
           whileHover={{ y: -4, transition: { duration: 0.3, ease: skyEasing } }}
-          className="sm:col-span-1 lg:col-span-2 glass-card p-6 md:p-8 rounded-xl border border-outline-variant/15 flex flex-col justify-between group hover:bg-surface-container-lowest transition-all duration-500"
+          className="sm:col-span-1 lg:col-span-2 glass-card p-6 md:p-8 rounded-xl border border-outline-variant/15 flex flex-col justify-between group hover:bg-surface-container-lowest transition-colors duration-500 transform-gpu"
         >
           <div className="flex justify-between items-start">
             <div className="text-primary">
@@ -138,7 +138,7 @@ export default function SkillsSection() {
         <motion.div
           variants={fadeInUp}
           whileHover={{ y: -4, transition: { duration: 0.3, ease: skyEasing } }}
-          className="sm:col-span-1 lg:col-span-2 glass-card p-6 md:p-8 rounded-xl border border-outline-variant/15 flex items-center gap-6 group hover:bg-surface-container-lowest transition-all duration-500"
+          className="sm:col-span-1 lg:col-span-2 glass-card p-6 md:p-8 rounded-xl border border-outline-variant/15 flex items-center gap-6 group hover:bg-surface-container-lowest transition-colors duration-500 transform-gpu"
         >
           <div className="w-14 h-14 bg-sky-900 rounded-lg flex items-center justify-center text-white font-bold text-xl shrink-0">
             TS
@@ -156,7 +156,7 @@ export default function SkillsSection() {
           ref={progressRef}
           variants={fadeInUp}
           whileHover={{ y: -4, transition: { duration: 0.3, ease: skyEasing } }}
-          className="sm:col-span-2 lg:col-span-2 p-6 md:p-8 rounded-xl border border-outline-variant/15 bg-inverse-surface group transition-all duration-500"
+          className="sm:col-span-2 lg:col-span-2 p-6 md:p-8 rounded-xl border border-outline-variant/15 bg-inverse-surface group transition-colors duration-500 transform-gpu"
         >
           <div className="flex items-center gap-4 text-surface mb-4">
             <span className="material-symbols-outlined">cloud_queue</span>

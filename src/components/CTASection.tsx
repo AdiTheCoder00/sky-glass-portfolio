@@ -42,14 +42,14 @@ export default function CTASection() {
               whileHover={{ scale: 1.05, filter: "brightness(1.1)" }}
               whileTap={{ scale: 0.95 }}
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-primary text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-lg shadow-lg shadow-primary/20 transition-all"
+              className="bg-primary-container text-on-primary-container px-8 md:px-10 py-4 md:py-5 rounded-full font-headline font-semibold tracking-wide text-lg transition-all"
             >
               Start a Conversation
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white/50 border border-outline-variant/20 text-on-surface px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-lg hover:bg-white transition-all"
+              className="bg-surface-container-low border border-outline-variant/20 text-on-surface px-8 md:px-10 py-4 md:py-5 rounded-full font-medium tracking-wide text-lg hover:bg-surface-container-lowest transition-all"
             >
               Download Resume
             </motion.button>

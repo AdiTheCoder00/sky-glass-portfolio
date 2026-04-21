@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
-import ScrollProgress from "@/components/ScrollProgress";
-import BackToTop from "@/components/BackToTop";
+import NavigationDock from "@/components/NavigationDock";
+import ThemeToggle from "@/components/ThemeToggle";
+import TargetCursor from "@/components/TargetCursor";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -43,8 +45,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var t = localStorage.getItem('theme');
+                if (t !== 'light') {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
@@ -52,10 +66,14 @@ export default function RootLayout({
       </head>
       <body
         className={`${manrope.variable} ${inter.variable} font-body antialiased`}
+        suppressHydrationWarning
       >
-        <ScrollProgress />
-        <BackToTop />
-        {children}
+        <SmoothScroll>
+          <TargetCursor hideDefaultCursor={false} />
+          <NavigationDock />
+          <ThemeToggle />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

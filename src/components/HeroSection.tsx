@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { heroStagger, fadeInUp, fadeInRight, skyEasing } from "@/lib/animations";
+import TechMarquee from "./TechMarquee";
 
 const roles = [
   "Full-Stack Developer",
@@ -49,14 +50,8 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-32"
     >
-      {/* Floating background blobs */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary-container/10 via-surface to-surface" />
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full animate-float" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-primary-container/10 blur-[100px] rounded-full animate-float-delayed" />
-      <div className="absolute top-[40%] left-[30%] w-[300px] h-[300px] bg-secondary-container/10 blur-[100px] rounded-full animate-float-slow" />
-
       <div className="max-w-7xl mx-auto px-6 md:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left: Text Content */}
         <motion.div
@@ -105,7 +100,7 @@ export default function HeroSection() {
               whileHover={{ scale: 1.05, filter: "brightness(1.1)" }}
               whileTap={{ scale: 0.95 }}
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-primary-container text-on-primary-container px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center gap-2 shadow-lg shadow-sky-200/50"
+              className="bg-primary-container text-on-primary-container px-8 py-4 rounded-full font-headline font-semibold tracking-wide text-lg transition-all flex items-center gap-2 cursor-target"
             >
               View Projects
               <span className="material-symbols-outlined">arrow_outward</span>
@@ -114,7 +109,7 @@ export default function HeroSection() {
               whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 98, 157, 0.05)" }}
               whileTap={{ scale: 0.95 }}
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-transparent border border-outline-variant/20 text-primary px-8 py-4 rounded-full font-bold text-lg transition-all"
+              className="bg-transparent border border-outline-variant/20 text-primary px-8 py-4 rounded-full font-bold text-lg transition-all cursor-target"
             >
               Contact Me
             </motion.button>
@@ -131,7 +126,7 @@ export default function HeroSection() {
           {/* Main Card - Full-Stack Architect */}
           <motion.div
             variants={fadeInRight}
-            className="glass-card p-6 rounded-3xl border border-outline-variant/10 shadow-sky-sm col-span-2 hover:shadow-sky-md transition-shadow duration-500"
+            className="glass-card p-6 rounded-3xl border border-outline-variant/10 shadow-sky-sm col-span-2 hover:shadow-sky-md transition-shadow duration-500 cursor-target"
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
@@ -163,7 +158,7 @@ export default function HeroSection() {
           <motion.div
             variants={fadeInUp}
             whileHover={{ y: -4, boxShadow: "0px 20px 40px rgba(0,98,157,0.08)" }}
-            className="glass-card p-6 rounded-3xl border border-outline-variant/10 shadow-sky-sm transition-all duration-500"
+            className="glass-card p-6 rounded-3xl border border-outline-variant/10 shadow-sky-sm transition-all duration-500 cursor-target"
           >
             <div className="h-10 w-10 rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center mb-3">
               <span className="material-symbols-outlined">psychology</span>
@@ -178,7 +173,7 @@ export default function HeroSection() {
           <motion.div
             variants={fadeInUp}
             whileHover={{ y: -4, boxShadow: "0px 20px 40px rgba(0,98,157,0.08)" }}
-            className="glass-card p-6 rounded-3xl border border-outline-variant/10 shadow-sky-sm transition-all duration-500"
+            className="glass-card p-6 rounded-3xl border border-outline-variant/10 shadow-sky-sm transition-all duration-500 cursor-target"
           >
             <div className="h-10 w-10 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mb-3">
               <span className="material-symbols-outlined">emoji_events</span>
@@ -189,6 +184,10 @@ export default function HeroSection() {
             </p>
           </motion.div>
         </motion.div>
+      </div>
+
+      <div className="absolute bottom-0 left-0 w-full">
+        <TechMarquee />
       </div>
     </section>
   );

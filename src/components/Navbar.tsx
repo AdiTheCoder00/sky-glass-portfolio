@@ -61,7 +61,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 h-20">
           {/* Logo */}
           <motion.div
-            className="text-2xl font-bold tracking-tighter text-sky-900 font-headline cursor-pointer"
+            className="text-2xl font-bold tracking-tighter text-sky-900 hover:text-purple-600 transition-colors duration-300 font-headline cursor-pointer"
             whileHover={{ scale: 1.02 }}
             onClick={() => handleNavClick("#home")}
           >

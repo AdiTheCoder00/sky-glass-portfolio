@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, staggerContainer, viewportOnce, skyEasing } from "@/lib/animations";
+import { ParticleCard, GlobalSpotlight } from "./MagicBento";
+import { useRef } from "react";
 
 const projects = [
   {
@@ -44,8 +46,9 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
+  const gridRef = useRef<HTMLDivElement>(null);
   return (
-    <section id="projects" className="py-24 md:py-32 bg-surface">
+    <section id="projects" className="py-24 md:py-32 bg-surface relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Header */}
         <motion.header
@@ -78,8 +81,10 @@ export default function ProjectsSection() {
         </motion.header>
 
         {/* Projects Bento Grid */}
+        <GlobalSpotlight gridRef={gridRef} glowColor="168, 85, 247" />
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8"
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 bento-section"
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
@@ -92,8 +97,9 @@ export default function ProjectsSection() {
               y: -8,
               transition: { duration: 0.4, ease: skyEasing },
             }}
-            className="md:col-span-8 group relative overflow-hidden rounded-3xl bg-surface-container-lowest glass-card shadow-sky-sm transition-all duration-500"
+            className="md:col-span-8 group relative"
           >
+            <ParticleCard particleCount={0} glowColor="168, 85, 247" className="h-full w-full magic-bento-card--border-glow overflow-hidden rounded-3xl bg-surface-container-lowest glass-card shadow-sky-sm transition-all duration-500" style={({'--glow-color': '168, 85, 247', padding: 0} as any)}>
             <div className="aspect-video w-full overflow-hidden relative">
               <Image
                 src={projects[0].image}
@@ -134,6 +140,7 @@ export default function ProjectsSection() {
                 {projects[0].description}
               </p>
             </div>
+            </ParticleCard>
           </motion.div>
 
           {/* Lumina Mobile */}
@@ -144,8 +151,9 @@ export default function ProjectsSection() {
               boxShadow: "0px 20px 40px rgba(0,98,157,0.08)",
               transition: { duration: 0.4, ease: skyEasing },
             }}
-            className="md:col-span-4 group bg-surface-container-low rounded-3xl overflow-hidden transition-all duration-500"
+            className="md:col-span-4 group relative"
           >
+            <ParticleCard particleCount={0} glowColor="168, 85, 247" className="h-full w-full magic-bento-card--border-glow bg-surface-container-low rounded-3xl overflow-hidden transition-all duration-500" style={({'--glow-color': '168, 85, 247', padding: 0} as any)}>
             <div className="aspect-square relative">
               <Image
                 src={projects[1].image}
@@ -173,6 +181,7 @@ export default function ProjectsSection() {
                 </span>
               </motion.button>
             </div>
+            </ParticleCard>
           </motion.div>
 
           {/* Prism Analytics */}
@@ -182,8 +191,9 @@ export default function ProjectsSection() {
               y: -8,
               transition: { duration: 0.4, ease: skyEasing },
             }}
-            className="md:col-span-4 group bg-surface-container-lowest glass-card rounded-3xl overflow-hidden shadow-sky-sm transition-all duration-500"
+            className="md:col-span-4 group relative"
           >
+            <ParticleCard particleCount={0} glowColor="168, 85, 247" className="h-full w-full magic-bento-card--border-glow bg-surface-container-lowest glass-card rounded-3xl overflow-hidden shadow-sky-sm transition-all duration-500" style={({'--glow-color': '168, 85, 247', padding: 0} as any)}>
             <div className="aspect-video relative">
               <Image
                 src={projects[2].image}
@@ -209,13 +219,15 @@ export default function ProjectsSection() {
                 </span>
               </div>
             </div>
+            </ParticleCard>
           </motion.div>
 
           {/* Stratosphere OS — Wide */}
           <motion.div
             variants={fadeInUp}
-            className="md:col-span-8 flex flex-col md:flex-row bg-surface-container-high rounded-3xl overflow-hidden group"
+            className="md:col-span-8 group relative"
           >
+            <ParticleCard particleCount={0} glowColor="168, 85, 247" className="h-full w-full magic-bento-card--border-glow flex flex-col md:flex-row bg-surface-container-high rounded-3xl overflow-hidden" style={({'--glow-color': '168, 85, 247', padding: 0} as any)}>
             <div className="md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
               <h3 className="text-xl md:text-2xl font-headline font-bold mb-4">
                 {projects[3].title}
@@ -249,13 +261,14 @@ export default function ProjectsSection() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
+            </ParticleCard>
           </motion.div>
         </motion.div>
       </div>
 
       {/* Decorative atmospheric elements */}
-      <div className="fixed top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary-container/5 rounded-full blur-[120px] pointer-events-none -z-10" />
-      <div className="fixed bottom-[-5%] left-[-5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10" />
+      <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary-container/5 rounded-full blur-[120px] pointer-events-none -z-10 will-change-transform" />
+      <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10 will-change-transform" />
     </section>
   );
 }
